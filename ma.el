@@ -32,8 +32,8 @@
   ;; single line
   (modify-syntax-entry ?- ". 123b" synTable)
   (modify-syntax-entry ?\n "> b" synTable)
-	;; multiple lines
-	(modify-syntax-entry ?{ ". 1n" synTable)
+  ;; multiple lines
+  (modify-syntax-entry ?{ ". 1n" synTable)
   (modify-syntax-entry ?} ". 4n" synTable)
 
         synTable))
