@@ -1,8 +1,11 @@
 ;; based on: http://ergoemacs.org/emacs/elisp_syntax_coloring.html
 
 ;; define several class of keywords
-(setq mylsl-keywords '("let" "in" "fun" "mutual" "sized" "fields" "data" "codata" "record"))
-(setq mylsl-types '("Set" "Size"))
+(setq mylsl-keywords '("let" "in" "case" "max" "fun" "cofun" "mutual" "sized" "fields" "data" "codata" "record" "impredicative" "pattern" "eval" "trustme" "check" "fail"))
+(setq mylsl-types '("Set" "CoSet" "Size"))
+
+;; Andreas 2014-01-10: what to do about operators/symbols?
+;; "<|" "|>" "#" "$" "\" "->" "\" ":" "<" "<=" ">" "++" "+" "-" "^" "*" "."
 
 ;; create the regex string for each class of keywords
 (setq mylsl-keywords-regexp (regexp-opt mylsl-keywords 'words))
