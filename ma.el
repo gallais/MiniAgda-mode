@@ -1,26 +1,27 @@
 ;; based on: http://ergoemacs.org/emacs/elisp_syntax_coloring.html
 
 ;; define several class of keywords
-(setq mylsl-keywords '("let" "in" "case" "max" "fun" "cofun" "mutual" "sized" "fields" "data" "codata" "record" "impredicative" "pattern" "eval" "trustme" "check" "fail"))
-(setq mylsl-types '("Set" "CoSet" "Size"))
-
-;; Andreas 2014-01-10: what to do about operators/symbols?
-;; "<|" "|>" "#" "$" "\" "->" "\" ":" "<" "<=" ">" "++" "+" "-" "^" "*" "."
+(setq mykeywords  '("let" "in" "case" "max" "fun" "cofun" "mutual" "sized" "fields" "data" "codata" "record" "impredicative" "pattern" "eval" "trustme" "check" "fail"))
+(setq myoperators '("<|" "|>" "\#" "$" "\\" "->" ":" "<" "<=" ">" "++" "+" "-" "^" "*" "."))
+(setq mytypes     '("Set" "CoSet" "Size"))
 
 ;; create the regex string for each class of keywords
-(setq mylsl-keywords-regexp (regexp-opt mylsl-keywords 'words))
-(setq mylsl-type-regexp (regexp-opt mylsl-types 'words))
+(setq mykeywords-regexp  (regexp-opt mykeywords  'words))
+(setq myoperators-regexp (regexp-opt myoperators))
+(setq mytypes-regexp     (regexp-opt mytypes     'words))
 
 ;; clear memory
-(setq mylsl-keywords nil)
-(setq mylsl-types nil)
+(setq mykeywords  nil)
+(setq myoperators nil)
+(setq mytypes     nil)
 
 ;; create the list for font-lock.
 ;; each class of keyword is given a particular face
-(setq mylsl-font-lock-keywords
+(setq myfont-lock-keywords
   `(
-    (,mylsl-type-regexp . font-lock-type-face)
-    (,mylsl-keywords-regexp . font-lock-keyword-face)
+    (,mytypes-regexp     . font-lock-type-face)
+    (,myoperators-regexp . font-lock-builtin-face)
+    (,mykeywords-regexp  . font-lock-keyword-face)
 ))
 
 ;; syntax table
@@ -60,11 +61,11 @@
   ;; handling comments
   :syntax-table miniagda-syntax-table
   ;; code for syntax highlighting
-  (setq font-lock-defaults '((mylsl-font-lock-keywords)))
+  (setq font-lock-defaults '((myfont-lock-keywords)))
   (setq mode-name "MiniAgda")
   ;; clear memory
-  (setq mylsl-keywords-regexp nil)
-  (setq mylsl-types-regexp nil)
+  (setq mykeywords-regexp nil)
+  (setq mytypes-regexp nil)
   ;; set compilation key binding
   (local-set-key (kbd "C-c C-l") 'compile)
 )
